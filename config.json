@@ -1,0 +1,5 @@
+{
+    "url": "https://app.webfronts.com/login.html",
+    "headless": false,
+    "download_path": "data/webfront_downloads"
+}
