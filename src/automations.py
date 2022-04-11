@@ -1,9 +1,15 @@
 from webdriver_setup import WebDriverSetup
 from page_object.pages.webfront_page import (
-    LoginPage,
-    HomePage,
-    ViewPage,
-    ExportPage
+    WebFrontLoginPage,
+    WebFrontHomePage,
+    WebFrontViewPage,
+    WebFrontExportPage
+)
+from page_object.pages.retail_deck_page import (
+    RetailDeckLoginPage,
+    RetailDeckHomePage,
+    RetailDeckViewPage,
+    RetailDeckExportPage
 )
 from logger import logger
 from tools import wait
@@ -26,7 +32,7 @@ class WebFrontAutomation:
 
     def run_driver(self) -> None:
         # Login page
-        login_page = LoginPage(
+        login_page = WebFrontLoginPage(
             self.driver,
             url=self.config['url'],
             username=self.credentials['username'],
@@ -36,7 +42,7 @@ class WebFrontAutomation:
         login_page.login()
 
         # Home page
-        home_page = HomePage(
+        home_page = WebFrontHomePage(
             self.driver,
             download_path=self.config['download_path']
         )
@@ -44,7 +50,7 @@ class WebFrontAutomation:
         home_page.filter_data()
 
         # View page
-        view_page = ViewPage(self.driver)
+        view_page = WebFrontViewPage(self.driver)
         view_page.open_collapsible_headers()
         view_page.tick_checkboxes()
         view_page.accept_changes()
@@ -53,7 +59,7 @@ class WebFrontAutomation:
         home_page.set_export_options()
 
         # Export page
-        export_page = ExportPage(self.driver)
+        export_page = WebFrontExportPage(self.driver)
         export_page.choose_filetype()
         export_page.choose_export_all()
         export_page.download_data()
@@ -87,7 +93,7 @@ class RetailDeckAutomation:
 
     def run_driver(self) -> None:
         # Login page
-        login_page = LoginPage(
+        login_page = RetailDeckLoginPage(
             self.driver,
             url=self.config['url'],
             username=self.credentials['username'],
@@ -97,14 +103,14 @@ class RetailDeckAutomation:
         login_page.login()
 
         # Home page
-        home_page = HomePage(
+        home_page = RetailDeckHomePage(
             self.driver,
             download_path=self.config['download_path']
         )
         home_page.set_view_options()
 
         # View page
-        view_page = ViewPage(self.driver)
+        view_page = RetailDeckViewPage(self.driver)
         view_page.open_collapsible_headers()
         view_page.tick_checkboxes()
         view_page.accept_changes()
@@ -113,7 +119,7 @@ class RetailDeckAutomation:
         home_page.set_export_options()
 
         # Export page
-        export_page = ExportPage(self.driver)
+        export_page = RetailDeckExportPage(self.driver)
         export_page.choose_filetype()
         export_page.choose_export_all()
         export_page.download_data()

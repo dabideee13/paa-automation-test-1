@@ -17,7 +17,7 @@ from tools import wait
 from logger import logger
 
 
-class LoginPage(BasePage):
+class RetailDeckLoginPage(BasePage):
 
     def __init__(self, driver, url: str, username: str, password: str) -> None:
         super().__init__(driver)
@@ -41,13 +41,14 @@ class LoginPage(BasePage):
 
         logger.info('Entering password')
         self.enter_text(RetailDeckLoginPageLocators.password_field, self.username)
+        wait(low=1)
 
         logger.info('Clicking login button')
         self.click(RetailDeckLoginPageLocators.login_button)
         wait(low=5, high=10)
 
 
-class HomePage(BasePage):
+class RetailDeckHomePage(BasePage):
 
     def __init__(self, driver, download_path: Path) -> None:
         super().__init__(driver)
@@ -78,7 +79,7 @@ class HomePage(BasePage):
                 break
 
 
-class ViewPage(BasePage):
+class RetailDeckViewPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -149,7 +150,7 @@ class ViewPage(BasePage):
         wait(low=2)
 
 
-class ExportPage(BasePage):
+class RetailDeckExportPage(BasePage):
 
     def __init__(self, driver) -> None:
         super().__init__(driver)

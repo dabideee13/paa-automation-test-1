@@ -6,7 +6,8 @@ class RetailDeckLoginPageLocators:
     zoom_script = 'document.body.style.zoom="100%"'
     username_field = (By.XPATH, '//*[@id="login_box_username"]')
     password_field = (By.XPATH, '//*[@id="login_box_password"]')
-    login_button = (By.XPATH, '//*[@id="login-button"]')
+    # login_button = (By.XPATH, '//*[@id="login-button"]')
+    login_button = (By.ID, 'login-button')
 
 
 class RetailDeckHomePageLocators:

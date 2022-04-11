@@ -19,7 +19,7 @@ from tools import wait
 from logger import logger
 
 
-class LoginPage(BasePage):
+class WebFrontLoginPage(BasePage):
 
     def __init__(self, driver, url: str, username: str, password: str) -> None:
         super().__init__(driver)
@@ -50,7 +50,7 @@ class LoginPage(BasePage):
         wait(low=5, high=10)
 
 
-class HomePage(BasePage):
+class WebFrontHomePage(BasePage):
 
     def __init__(self, driver, download_path: Path) -> None:
         super().__init__(driver)
@@ -86,7 +86,7 @@ class HomePage(BasePage):
                 break
 
 
-class ViewPage(BasePage):
+class WebFrontViewPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -162,7 +162,7 @@ class ViewPage(BasePage):
         wait(low=2)
 
 
-class ExportPage(BasePage):
+class WebFrontExportPage(BasePage):
 
     def __init__(self, driver) -> None:
         super().__init__(driver)
