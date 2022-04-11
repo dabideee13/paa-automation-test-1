@@ -74,12 +74,12 @@ class PortalDealerOrderStatusPage(BasePage):
     def set_export_options(self):
         logger.info('Setting export options')
         self.click(PortalDealerOrderStatusPageLocators.export_options)
-        wait(low=2)
+        wait(low=5)
 
     def download_data(self):
         logger.info('Downloading data')
         self.click(PortalDealerOrderStatusPageLocators.csv_export_button)
-        wait(low=2)
+        wait(low=5)
 
     def wait_download(self) -> None:
         logger.info('Waiting for file to be downloaded')
