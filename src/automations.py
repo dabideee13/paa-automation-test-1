@@ -11,6 +11,12 @@ from page_object.pages.retail_deck_page import (
     RetailDeckViewPage,
     RetailDeckExportPage
 )
+from page_object.pages.portal_page import (
+    PortalLoginPage,
+    PortalHomePage,
+    PortalSalesOrdersPage,
+    PortalDealerOrderStatusPage
+)
 from logger import logger
 from tools import wait
 
@@ -126,6 +132,59 @@ class RetailDeckAutomation:
 
         # Home page
         home_page.wait_download()
+
+    def quit_driver(self) -> None:
+        if self.driver is not None:
+            logger.info('Closing driver')
+            wait(low=3)
+
+            self.driver.close()
+            self.driver.quit()
+
+
+class PortalAutomation:
+
+    def __init__(self, config: dict[str, str], credentials: dict[str, str]) -> None:
+        self.config = config
+        self.credentials = credentials
+
+        self.driver = self._setup_driver()
+
+    def _setup_driver(self):
+        setup = WebDriverSetup(
+            download_path=self.config['download_path'],
+            headless=self.config['headless']
+        )
+        return setup.set_driver()
+
+    def run_driver(self) -> None:
+        # Login page
+        login_page = PortalLoginPage(
+            self.driver,
+            url=self.config['url'],
+            username=self.credentials['username'],
+            password=self.credentials['password']
+        )
+        login_page.zoom()
+        login_page.login()
+
+        # Home page
+        home_page = PortalHomePage(self.driver)
+        home_page.click_sales_orders()
+
+        # Sales orders page
+        sales_orders_page = PortalSalesOrdersPage(self.driver)
+        sales_orders_page.click_dealer_order_status()
+
+
+        # Dealer order status page
+        dealer_order_status_page = PortalDealerOrderStatusPage(
+            self.driver,
+            download_path=self.config['download_path']
+        )
+        dealer_order_status_page.set_export_options()
+        dealer_order_status_page.download_data()
+        dealer_order_status_page.wait_download()
 
     def quit_driver(self) -> None:
         if self.driver is not None:

@@ -6,14 +6,13 @@ class RetailDeckLoginPageLocators:
     zoom_script = 'document.body.style.zoom="100%"'
     username_field = (By.XPATH, '//*[@id="login_box_username"]')
     password_field = (By.XPATH, '//*[@id="login_box_password"]')
-    # login_button = (By.XPATH, '//*[@id="login-button"]')
     login_button = (By.ID, 'login-button')
 
 
 class RetailDeckHomePageLocators:
     view_options_button = (By.XPATH, '//*[@id="show_hide_columns_btn"]')
     more_results_element = (By.XPATH, '//*[@id="ajax_data_table"]/tbody/tr[201]/td')
-    export_options = "/html/body/div[8]/div[3]/div[3]/p[4]"
+    export_options = (By.XPATH, "/html/body/div[8]/div[3]/div[3]/p[4]")
 
 
 class RetailDeckViewPageLocators:
@@ -60,8 +59,21 @@ class WebFrontExportPageLocators:
 
 
 class PortalLoginPageLocators:
-    pass
+    zoom_script = 'document.body.style.zoom="100%"'
+    username_field = (By.ID, 'username')
+    password_field = (By.ID, 'password')
+    login_button = (By.ID, 'login')
 
 
 class PortalHomePageLocators:
-    pass
+    sales_orders = (By.XPATH, '/html/body/div[3]/div[3]/div[1]/div[2]/div[7]/div[1]/div/div')
+
+
+class PortalSalesOrdersPageLocators:
+    dealer_order_status = (By.XPATH, '/html/body/div[3]/div[3]/div[1]/div[2]/div[2]/div[1]/div/div[3]')
+
+
+class PortalDealerOrderStatusPageLocators:
+    export_options = (By.XPATH, '/html/body/div[3]/div[1]/div[2]/div/div[9]/div[1]')
+    export_button = (By.XPATH, '/html/body/div[3]/div[1]/div[2]/div/div[9]/div[2]/div/div[5]/div[2]/div')
+

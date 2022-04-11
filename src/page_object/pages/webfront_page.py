@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from typing import Optional
 
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (
@@ -159,7 +158,7 @@ class WebFrontViewPage(BasePage):
     def accept_changes(self) -> None:
         logger.info('Accepting changes')
         self.click(WebFrontViewPageLocators.accept_changes_button)
-        wait(low=2)
+        wait(low=5)
 
 
 class WebFrontExportPage(BasePage):

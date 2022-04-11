@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QApplication, QVBoxLayout
 from PyQt5.QtCore import Qt
 
-from automations import WebFrontAutomation, RetailDeckAutomation
+from automations import WebFrontAutomation, RetailDeckAutomation, PortalAutomation
 from tools import get_config, get_credentials
 from logger import logger
 
@@ -42,13 +42,21 @@ class Window(QMainWindow):
         # webfront.run_driver()
         # webfront.quit_driver()
 
-        # retaildeck automation
-        retail_deck = RetailDeckAutomation(
-            config=get_config('retail_deck'),
-            credentials=get_credentials('retail_deck')
+        # # retaildeck automation
+        # retail_deck = RetailDeckAutomation(
+        #     config=get_config('retail_deck'),
+        #     credentials=get_credentials('retail_deck')
+        # )
+        # retail_deck.run_driver()
+        # retail_deck.quit_driver()
+
+        # portal automation
+        portal = PortalAutomation(
+            config=get_config('portal'),
+            credentials=get_credentials('portal')
         )
-        retail_deck.run_driver()
-        retail_deck.quit_driver()
+        portal.run_driver()
+        portal.quit_driver()
 
         logger.info('DONE: Processing data')
 

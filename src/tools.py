@@ -40,6 +40,8 @@ def get_credentials(domain: str) -> dict[str, str]:
 
 
 if __name__ == '__main__':
-    print(get_config(), '\n')
-    print(get_credentials(), '\n')
+    print(get_config('retail_deck'), '\n')
+    print(get_credentials('retail_deck'), '\n')
+
+    print(get_credentials('retail_deck')['password'])
 

@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (
@@ -40,7 +41,7 @@ class RetailDeckLoginPage(BasePage):
         wait(low=1)
 
         logger.info('Entering password')
-        self.enter_text(RetailDeckLoginPageLocators.password_field, self.username)
+        self.enter_text(RetailDeckLoginPageLocators.password_field, self.password)
         wait(low=1)
 
         logger.info('Clicking login button')
@@ -99,7 +100,7 @@ class RetailDeckViewPage(BasePage):
             wait(high=2)
 
     def tick_checkboxes(self) -> None:
-        td_drivers = self.find_elements(*RetailDeckViewPageLocators.td_class)
+        td_drivers = self.driver.find_elements(*RetailDeckViewPageLocators.td_class)
 
         for td_index, td_driver in enumerate(td_drivers, start=1):
             wait(high=2)
@@ -144,10 +145,12 @@ class RetailDeckViewPage(BasePage):
                     td_driver
                 )
 
+        wait(low=1)
+
     def accept_changes(self) -> None:
         logger.info('Accepting changes')
         self.click(RetailDeckViewPageLocators.accept_changes_button)
-        wait(low=2)
+        wait(low=5)
 
 
 class RetailDeckExportPage(BasePage):
