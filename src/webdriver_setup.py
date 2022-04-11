@@ -9,7 +9,7 @@ class WebDriverSetup:
 
     def __init__(
         self,
-        download_path: Path,
+        download_path: str,
         headless: bool = False
     ) -> None:
         self.download_path = str(download_path)

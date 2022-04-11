@@ -68,6 +68,7 @@ class HomePage(BasePage):
         wait(low=5)
 
     def set_export_options(self) -> None:
+        logger.info('Setting export options')
         self.check_presence(WebFrontHomePageLocators.export_options)
         self.click(WebFrontHomePageLocators.export_options)
         wait(low=2)
@@ -81,7 +82,7 @@ class HomePage(BasePage):
 
             files = [file for file in os.listdir(self.download_path) if file != '.DS_Store']
 
-            if len(files) == 1 and files[0].endswith('.xlsx'):
+            if len(files) == 1 and files[0].endswith('.csv'):
                 break
 
 
@@ -165,6 +166,11 @@ class ExportPage(BasePage):
 
     def __init__(self, driver) -> None:
         super().__init__(driver)
+
+    def choose_filetype(self) -> None:
+        logger.info('Selecting filetype')
+        self.select_value(WebFrontExportPageLocators.export_filetype, 'csv')
+        wait(low=1)
 
     def choose_export_all(self) -> None:
         logger.info('Selecting export all option')
