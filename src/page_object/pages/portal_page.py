@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from page_object.locators import (
@@ -6,7 +7,7 @@ from page_object.locators import (
     PortalSalesOrdersPageLocators,
     PortalDealerOrderStatusPageLocators
 )
-from page_object.base_page import BasePage
+from page_object.pages.base_page import BasePage
 from tools import wait
 from logger import logger
 
@@ -77,7 +78,7 @@ class PortalDealerOrderStatusPage(BasePage):
 
     def download_data(self):
         logger.info('Downloading data')
-        self.click(PortalDealerOrderStatusPageLocators.export_button)
+        self.click(PortalDealerOrderStatusPageLocators.csv_export_button)
         wait(low=2)
 
     def wait_download(self) -> None:
@@ -90,3 +91,4 @@ class PortalDealerOrderStatusPage(BasePage):
             files = [file for file in os.listdir(self.download_path) if file != '.DS_Store']
 
             if len(files) == 1 and files[0].endswith('.csv'):
+                break

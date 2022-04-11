@@ -75,5 +75,6 @@ class PortalSalesOrdersPageLocators:
 
 class PortalDealerOrderStatusPageLocators:
     export_options = (By.XPATH, '/html/body/div[3]/div[1]/div[2]/div/div[9]/div[1]')
-    export_button = (By.XPATH, '/html/body/div[3]/div[1]/div[2]/div/div[9]/div[2]/div/div[5]/div[2]/div')
+    excel_export_button = (By.XPATH, '/html/body/div[3]/div[1]/div[2]/div/div[9]/div[2]/div/div[5]/div[2]/div')
+    csv_export_button = (By.XPATH, '/html/body/div[5]/div[1]/div[2]/div/div[9]/div[2]/div/div[2]/div[1]')
 
