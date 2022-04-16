@@ -51,9 +51,10 @@ class RetailDeckLoginPage(BasePage):
 
 class RetailDeckHomePage(BasePage):
 
-    def __init__(self, driver, download_path: Path) -> None:
+    def __init__(self, driver, download_path: Path, filetype: str = '.xlsx') -> None:
         super().__init__(driver)
         self.download_path = download_path
+        self.filetype = filetype
 
     def set_view_options(self) -> None:
         logger.info('Clicking view options')
@@ -76,7 +77,7 @@ class RetailDeckHomePage(BasePage):
 
             files = [file for file in os.listdir(self.download_path) if file != '.DS_Store']
 
-            if len(files) == 1 and files[0].endswith('.csv'):
+            if len(files) == 1 and files[0].endswith(self.filetype):
                 break
 
 
@@ -160,7 +161,7 @@ class RetailDeckExportPage(BasePage):
 
     def choose_filetype(self) -> None:
         logger.info('Selecting filetype')
-        self.select_value(RetailDeckExportPageLocators.export_filetype, 'csv')
+        self.select_value(RetailDeckExportPageLocators.export_filetype, 'xlsx')
         wait(low=1)
 
     def choose_export_all(self) -> None:

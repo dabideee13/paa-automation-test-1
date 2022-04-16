@@ -51,9 +51,10 @@ class WebFrontLoginPage(BasePage):
 
 class WebFrontHomePage(BasePage):
 
-    def __init__(self, driver, download_path: Path) -> None:
+    def __init__(self, driver, download_path: Path, filetype: str = '.xlsx') -> None:
         super().__init__(driver)
         self.download_path = download_path
+        self.filetype = filetype
 
     def view_model_page(self) -> None:
         logger.info('Clicking model page button')
@@ -81,7 +82,7 @@ class WebFrontHomePage(BasePage):
 
             files = [file for file in os.listdir(self.download_path) if file != '.DS_Store']
 
-            if len(files) == 1 and files[0].endswith('.csv'):
+            if len(files) == 1 and files[0].endswith(self.filetype):
                 break
 
 
@@ -168,7 +169,7 @@ class WebFrontExportPage(BasePage):
 
     def choose_filetype(self) -> None:
         logger.info('Selecting filetype')
-        self.select_value(WebFrontExportPageLocators.export_filetype, 'csv')
+        self.select_value(WebFrontExportPageLocators.export_filetype, 'xlsx')
         wait(low=1)
 
     def choose_export_all(self) -> None:

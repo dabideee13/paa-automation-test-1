@@ -67,9 +67,10 @@ class PortalSalesOrdersPage(BasePage):
 
 class PortalDealerOrderStatusPage(BasePage):
 
-    def __init__(self, driver, download_path: Path):
+    def __init__(self, driver, download_path: Path, filetype: str = '.xlsx'):
         super().__init__(driver)
         self.download_path = download_path
+        self.filetype = filetype
 
     def set_export_options(self):
         logger.info('Setting export options')
@@ -78,7 +79,7 @@ class PortalDealerOrderStatusPage(BasePage):
 
     def download_data(self):
         logger.info('Downloading data')
-        self.click(PortalDealerOrderStatusPageLocators.csv_export_button)
+        self.click(PortalDealerOrderStatusPageLocators.excel_export_button)
         wait(low=5)
 
     def wait_download(self) -> None:
@@ -90,5 +91,5 @@ class PortalDealerOrderStatusPage(BasePage):
 
             files = [file for file in os.listdir(self.download_path) if file != '.DS_Store']
 
-            if len(files) == 1 and files[0].endswith('.csv'):
+            if len(files) == 1 and files[0].endswith(self.filetype):
                 break

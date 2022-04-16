@@ -34,23 +34,26 @@ class Window(QMainWindow):
     def process_data(self):
         logger.info('Processing data')
 
-        # # webfront automation
-        # webfront = WebFrontAutomation(
-        #     config=get_config('webfront'),
-        #     credentials=get_credentials('webfront')
-        # )
-        # webfront.run_driver()
-        # webfront.quit_driver()
+        # webfront automation
+        logger.info('Running: WebFront')
+        webfront = WebFrontAutomation(
+            config=get_config('webfront'),
+            credentials=get_credentials('webfront')
+        )
+        webfront.run_driver()
+        webfront.quit_driver()
 
-        # # retaildeck automation
-        # retail_deck = RetailDeckAutomation(
-        #     config=get_config('retail_deck'),
-        #     credentials=get_credentials('retail_deck')
-        # )
-        # retail_deck.run_driver()
-        # retail_deck.quit_driver()
+        # retaildeck automation
+        logger.info('Running: RetailDeck')
+        retail_deck = RetailDeckAutomation(
+            config=get_config('retail_deck'),
+            credentials=get_credentials('retail_deck')
+        )
+        retail_deck.run_driver()
+        retail_deck.quit_driver()
 
         # portal automation
+        logger.info('Running: Portal')
         portal = PortalAutomation(
             config=get_config('portal'),
             credentials=get_credentials('portal')

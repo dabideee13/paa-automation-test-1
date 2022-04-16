@@ -50,7 +50,7 @@ class WebFrontAutomation:
         # Home page
         home_page = WebFrontHomePage(
             self.driver,
-            download_path=self.config['download_path']
+            download_path=self.config['download_path'],
         )
         home_page.view_model_page()
         home_page.filter_data()
@@ -66,7 +66,7 @@ class WebFrontAutomation:
 
         # Export page
         export_page = WebFrontExportPage(self.driver)
-        export_page.choose_filetype()
+        # export_page.choose_filetype()
         export_page.choose_export_all()
         export_page.download_data()
 
@@ -126,7 +126,7 @@ class RetailDeckAutomation:
 
         # Export page
         export_page = RetailDeckExportPage(self.driver)
-        export_page.choose_filetype()
+        # export_page.choose_filetype()
         export_page.choose_export_all()
         export_page.download_data()
 
